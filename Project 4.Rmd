@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 test one file of ham or spam
 ```{r}
-install.packages("readtext")
-install.packages("Rtools")
-install.packages("textreadr")
+#install.packages("readtext")
+#install.packages("Rtools")
+#install.packages("textreadr")
 library(textreadr)
 library(readtext)
 ?readtext
@@ -22,7 +22,7 @@ library(readtext)
 DATA_DIR <- system.file("extdata/", package = "readtext")
 
 #directory 
-path = "~/Data 607/Project-4/ham"
+path = "https://github.com/ltcancel/Project-4/blob/master/ham/0001.ea7e79d3153e7469e7a9c3e0af6a357e"
 
 
 #file name with directory
@@ -36,6 +36,12 @@ file_read <- readtext(file1)
 
 #open file connection and read files
 con <- file(path, open = "rt", raw = TRUE)
+
+con2 <- url(path, open = "rt")
+text <- readLines(con, skipNul = TRUE)
+text2 <- readLines(con2, skipNul = TRUE)
+text2
+text
 ?file
 ```
 
