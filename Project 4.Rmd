@@ -27,11 +27,18 @@ newfiles <- gsub("[^.]*$", "txt", file1)
 file.rename(file1, newfiles)
 file1
 
+#new list of renamed files
+renamed.list <- list.files(path = "ham", pattern = "[^.]*$", full.names = TRUE)
+renamed.list
+
 #read the plain text files in the directory
-readChar(file1,file.info(file1)$size)
+#readChar(file1,file.info(file1)$size)
+item1 <- print(renamed.list[1])
+
+#read the text in just the first file in the list
+readChar(item1,file.info(item1)$size)
 
 
-readtext(file1)
 
 #open file connection and read files
 con <- file(path, open = "rt", raw = TRUE)
