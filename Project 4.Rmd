@@ -18,21 +18,20 @@ library(textreadr)
 library(readtext)
 ?readtext
 
-## get the data directory
-DATA_DIR <- system.file("extdata/", package = "readtext")
-
-#directory 
-path = "https://github.com/ltcancel/Project-4/blob/master/ham/0001.ea7e79d3153e7469e7a9c3e0af6a357e"
-
-
-#file name with directory
-file1 <- list.files(path = "ham")
+#create a list of all file names within the ham directory
+file1 <- list.files(path = "ham", pattern = "[^.]*$", full.names = TRUE)
 file1
 
-test <- read.file(file1)
+#rename all files in ham directory with a .txt extension 
+newfiles <- gsub("[^.]*$", "txt", file1)
+file.rename(file1, newfiles)
+file1
+
+#read the plain text files in the directory
+readChar(file1,file.info(file1)$size)
 
 
-file_read <- readtext(file1)
+readtext(file1)
 
 #open file connection and read files
 con <- file(path, open = "rt", raw = TRUE)
