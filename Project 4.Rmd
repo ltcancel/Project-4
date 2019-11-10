@@ -14,40 +14,66 @@ test one file of ham or spam
 #install.packages("readtext")
 #install.packages("Rtools")
 #install.packages("textreadr")
-library(textreadr)
-library(readtext)
-?readtext
+#install.packages("tidyverse")
+#library(tidyverse)
+#library(textreadr)
+#library(readtext)
+#?readtext
 
 #create a list of all file names within the ham directory
 file1 <- list.files(path = "ham", pattern = "[^.]*$", full.names = TRUE)
-file1
+#file1
 
 #rename all files in ham directory with a .txt extension 
 newfiles <- gsub("[^.]*$", "txt", file1)
 file.rename(file1, newfiles)
-file1
+#file1
 
 #new list of renamed files
 renamed.list <- list.files(path = "ham", pattern = "[^.]*$", full.names = TRUE)
-renamed.list
+#renamed.list
 
 #read the plain text files in the directory
 #readChar(file1,file.info(file1)$size)
 item1 <- print(renamed.list[1])
+#item1
 
 #read the text in just the first file in the list
-readChar(item1,file.info(item1)$size)
+#readChar(item1,file.info(item1)$size)
 
+#length of renamed list
+#length(renamed.list)
 
 
 #open file connection and read files
-con <- file(path, open = "rt", raw = TRUE)
+#con <- file(path, open = "rt", raw = TRUE)
 
-con2 <- url(path, open = "rt")
-text <- readLines(con, skipNul = TRUE)
-text2 <- readLines(con2, skipNul = TRUE)
-text2
-text
-?file
+#con2 <- url(path, open = "rt")
+#text <- readLines(con, skipNul = TRUE)
+#text2 <- readLines(con2, skipNul = TRUE)
+#text2
+#text
+#?file
+#?list
+
+#loop to read each of the list items
+ham.list <- list()
+for(x in 1:length(renamed.list)){
+  ham.data.file <- print(renamed.list[x])
+  ham.data <- readChar(ham.data.file,file.info(ham.data.file)$size)
+  
+  if(x == 1){
+    #add first list item
+    ham.list <- list(ham.data)
+  }
+  else{
+    #append the list
+    ham.list[[x]] <- ham.data
+  }
+  #tmp <- list(ham.data,file.info(ham.data)$size)
+  #ham.list[[ham.data]] <- tmp 
+}
+
+ham.list[300]
 ```
 
