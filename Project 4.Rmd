@@ -58,22 +58,46 @@ item1 <- print(renamed.list[1])
 
 #loop to read each of the list items
 ham.list <- list()
+
+
+
 for(x in 1:length(renamed.list)){
-  ham.data.file <- print(renamed.list[x])
+  ham.data.file <- renamed.list[x]
   ham.data <- readChar(ham.data.file,file.info(ham.data.file)$size)
-  
-  if(x == 1){
+  #ham.list <- list(ham.data)
+  #if(x == 1){
     #add first list item
-    ham.list <- list(ham.data)
+   # ham.list <- list(ham.data)
+  #}
+  #else{
+    #append the list
+   # ham.list[[x]] <- ham.data
+  #}
+  
+  #?tibble
+  
+  if(x==1){
+     ham.list <- list(ham.data)
+    #x
   }
   else{
-    #append the list
-    ham.list[[x]] <- ham.data
+    ham.list <- list(ham.list, ham.data)
+    #x
   }
   #tmp <- list(ham.data,file.info(ham.data)$size)
   #ham.list[[ham.data]] <- tmp 
 }
 
-ham.list[300]
+x
+ham.data
+
+str(ham.data)
+
+str(ham.list)
+
+ham.list
+
+
+#ham.list[300]
 ```
 
